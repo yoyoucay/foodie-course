@@ -19,7 +19,7 @@ export default async function MealsPage() {
         <p>Choose your favorite dishes and enjoy a culinary adventure.</p>
         <p className={classes.cta}>
           <Link href="/meals/share">
-            Share your favorite meal recipes with others!
+            Share your favorite meal recipes!
           </Link>
         </p>
       </header>
