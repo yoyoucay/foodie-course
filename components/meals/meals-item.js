@@ -4,12 +4,11 @@ import Image from 'next/image';
 import classes from './meal-item.module.css';
 
 export default function MealItem({ title, slug, image, summary, creator }) {
-  console.log({image})
   return (
     <article className={classes.meal}>
       <header>
         <div className={classes.image}>
-          <Image src={`https://foodie-course-image.s3.ap-southeast-2.amazonaws.com/${image}`} alt={title} fill />
+          <Image src={`https://${process.env.AWS_ADDRESS_BUCKET_NAME}/${image}`} alt={title} fill />
         </div>
         <div className={classes.headerText}>
           <h2>{title}</h2>
