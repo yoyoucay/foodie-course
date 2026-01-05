@@ -4,7 +4,10 @@ import { getMeal } from "@/lib/meals";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const meal = getMeal(params.mealSlug); 
+  const meal = getMeal(params.mealSlug);
+  if (!meal) {
+    notFound();
+  }
   return {
     title: meal ? meal.title : "Meal Not Found",
     description: meal ? meal.summary : "No meal found with the provided slug.",
@@ -18,12 +21,16 @@ export default function MealsDetailPage({ params }) {
     notFound();
   }
 
-  meal.instructions = meal.instructions.replace(/\n/g, '<br/>');
+  meal.instructions = meal.instructions.replace(/\n/g, "<br/>");
   return (
     <>
       <header className={classes.header}>
         <div className={classes.image}>
-          <Image src={`https://${process.env.AWS_ADDRESS_BUCKET_NAME}/${meal.image}`} alt={meal.title} fill />
+          <Image
+            src={`https://${process.env.AWS_ADDRESS_BUCKET_NAME}/${meal.image}`}
+            alt={meal.title}
+            fill
+          />
         </div>
         <div className={classes.headerText}>
           <h1>{meal.title}</h1>
