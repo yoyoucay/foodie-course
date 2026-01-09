@@ -16,24 +16,24 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form className={classes.form} action={formAction}>
+        <form className={classes.form} action={formAction} aria-label="Share meal form">
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
-              <input type="text" id="name" name="name" required />
+              <input type="text" id="name" name="name" required aria-required="true" />
             </p>
             <p>
               <label htmlFor="email">Your email</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="email" required aria-required="true" />
             </p>
           </div>
           <p>
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" name="title" required />
+            <input type="text" id="title" name="title" required aria-required="true" />
           </p>
           <p>
             <label htmlFor="summary">Short Summary</label>
-            <input type="text" id="summary" name="summary" required />
+            <input type="text" id="summary" name="summary" required aria-required="true" />
           </p>
           <p>
             <label htmlFor="instructions">Instructions</label>
@@ -42,10 +42,11 @@ export default function ShareMealPage() {
               name="instructions"
               rows="10"
               required
+              aria-required="true"
             ></textarea>
           </p>
           <ImagePicker label="Your Image" name="image" />
-          {state.message && <p className={classes.error}>{state.message}</p>}
+          {state.message && <p className={classes.error} role="alert">{state.message}</p>}
           <p className={classes.actions}>
             <MealsFormSubmit />
           </p>

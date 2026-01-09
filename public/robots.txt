@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://foodie.beemonswtf.web.id/sitemap.xml

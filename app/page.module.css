@@ -6,6 +6,27 @@
   max-width: 75rem;
 }
 
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem auto;
+  }
+  
+  .slideshow {
+    width: 100% !important;
+    height: 20rem !important;
+  }
+  
+  .hero h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  .cta {
+    flex-direction: column !important;
+  }
+}
+
 .slideshow {
   width: 40rem;
   height: 25rem;
@@ -43,6 +64,7 @@
   color: #ffffff;
   font-weight: bold;
   text-decoration: none;
+  transition: background 0.3s ease;
 }
 
 .cta a:hover,

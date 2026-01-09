@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-
 import classes from './meal-item.module.css';
 
 export default function MealItem({ title, slug, image, summary, creator }) {
@@ -8,7 +7,14 @@ export default function MealItem({ title, slug, image, summary, creator }) {
     <article className={classes.meal}>
       <header>
         <div className={classes.image}>
-          <Image src={`https://${process.env.AWS_ADDRESS_BUCKET_NAME}/${image}`} alt={title} fill />
+          <Image 
+            src={`https://${process.env.AWS_ADDRESS_BUCKET_NAME}/${image}`} 
+            alt={title} 
+            fill 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            quality={75}
+            loading="lazy"
+          />
         </div>
         <div className={classes.headerText}>
           <h2>{title}</h2>

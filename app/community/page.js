@@ -1,9 +1,13 @@
 import Image from 'next/image';
-
 import mealIcon from '@/assets/icons/meal.png';
 import communityIcon from '@/assets/icons/community.png';
 import eventsIcon from '@/assets/icons/events.png';
 import classes from './page.module.css';
+
+export const metadata = {
+  title: 'Foodies Community - Foodie',
+  description: 'Join our community of food lovers. Share recipes, find new friends, and participate in exclusive cooking events.',
+};
 
 export default function CommunityPage() {
   return (
@@ -19,18 +23,15 @@ export default function CommunityPage() {
 
         <ul className={classes.perks}>
           <li>
-            <Image src={mealIcon} alt="A delicious meal" />
+            <Image src={mealIcon} alt="A delicious meal" width={200} height={200} />
             <p>Share & discover recipes</p>
           </li>
           <li>
-            <Image src={communityIcon} alt="A crowd of people, cooking" />
+            <Image src={communityIcon} alt="A crowd of people, cooking" width={200} height={200} />
             <p>Find new friends & like-minded people</p>
           </li>
           <li>
-            <Image
-              src={eventsIcon}
-              alt="A crowd of people at a cooking event"
-            />
+            <Image src={eventsIcon} alt="A crowd of people at a cooking event" width={200} height={200} />
             <p>Participate in exclusive events</p>
           </li>
         </ul>

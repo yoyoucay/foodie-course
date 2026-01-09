@@ -12,11 +12,11 @@ export default function MainHeader() {
     <>
       <MainHeaderBackground />
       <header className={classes.header}>
-        <Link className={classes.logo} href="/">
-          <Image src={logoImg} alt="A plate with food on it" priority />
-          NextLevel Food
+        <Link className={classes.logo} href="/" aria-label="Foodie Homepage">
+          <Image src={logoImg} alt="Foodie logo - A plate with food on it" priority width={80} height={80} />
+          Foodie
         </Link>
-        <nav className={classes.nav}>
+        <nav className={classes.nav} aria-label="Main navigation">
           <ul>
             <li>
               <NavLink href="/meals">Browse Meals</NavLink>

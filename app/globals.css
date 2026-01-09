@@ -11,6 +11,7 @@ html {
 body {
   margin: 0;
   background: radial-gradient(#282c34, #282c34);
+  min-height: 100vh;
 }
 
 .not-found,
@@ -29,6 +30,7 @@ body {
   background: linear-gradient(90deg, #f9572a, #ffc905);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   background-size: cover;
   background-position: center;
   font-family: 'Montserrat', sans-serif;
@@ -39,4 +41,23 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
   color: #ddd8d8;
+}
+
+a {
+  color: #f9572a;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #ffc905;
+  outline: 2px solid #ffc905;
+  outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #f9572a;
+  outline-offset: 2px;
 }

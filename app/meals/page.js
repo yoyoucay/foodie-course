@@ -4,6 +4,11 @@ import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
 import { getMeals } from "@/lib/meals";
 
+export const metadata = {
+  title: 'Browse Meals - Foodie',
+  description: 'Browse and discover delicious meals shared by our food-loving community. Find your next favorite recipe.',
+};
+
 async function Meals() {
   const meals = await getMeals();
   return <MealsGrid meals={meals} />;
@@ -14,7 +19,7 @@ export default async function MealsPage() {
     <>
       <header className={classes.header}>
         <h1>
-          Delicious Meals <span className={classes.highlight}> by you</span>
+          Delicious Meals <span className={classes.highlight}>by you</span>
         </h1>
         <p>Choose your favorite dishes and enjoy a culinary adventure.</p>
         <p className={classes.cta}>

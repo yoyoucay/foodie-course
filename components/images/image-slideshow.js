@@ -42,6 +42,11 @@ export default function ImageSlideshow() {
           src={image.image}
           className={index === currentImageIndex ? classes.active : ''}
           alt={image.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 40rem"
+          quality={85}
+          priority={index === 0}
+          placeholder="blur"
         />
       ))}
     </div>
