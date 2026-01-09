@@ -1,6 +1,6 @@
-.header {
+﻿.header {
   gap: 3rem;
-  margin: 3rem auto 5rem auto;
+  margin: 3rem auto 2rem auto;
   width: 90%;
   max-width: 75rem;
   color: #ddd6cb;
@@ -31,10 +31,48 @@
   color: #ffffff;
   font-weight: bold;
   text-decoration: none;
+  transition: all 0.3s;
+}
+
+.cta a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(249, 87, 42, 0.4);
+}
+
+.main {
+  width: 90%;
+  max-width: 75rem;
+  margin: 2rem auto;
+}
+
+.resultCount {
+  text-align: center;
+  color: #ddd;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.noResults {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #ddd;
+}
+
+.noResults p {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.noResults p:first-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f9572a;
 }
 
 .loading {
   text-align: center;
+  font-size: 1.2rem;
   animation: loading 1.2s ease-in-out infinite;
 }
 

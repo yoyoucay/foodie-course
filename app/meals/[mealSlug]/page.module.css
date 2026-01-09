@@ -60,6 +60,79 @@
   font-size: 1.5rem;
 }
 
+.mealInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.infoLabel {
+  font-weight: bold;
+  color: #cfa69b;
+}
+
+.infoHighlight {
+  font-weight: bold;
+  color: #f9572a;
+}
+
+.difficulty {
+  font-weight: bold;
+}
+
+.main {
+  max-width: 60rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.section {
+  margin-bottom: 3rem;
+  animation: fade-slide-in-from-bottom 1s ease-out forwards;
+}
+
+.section h2 {
+  color: #ddd6cb;
+  font-size: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f9572a;
+  padding-bottom: 0.5rem;
+}
+
+.ingredientsList {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 2rem;
+  list-style-position: inside;
+}
+
+.ingredientsList li {
+  font-size: 1.25rem;
+  padding: 0.5rem 0;
+  color: #ddd6cb;
+  border-bottom: 1px solid #333;
+}
+
+.ingredientsList li:last-child {
+  border-bottom: none;
+}
+
+.ingredientsList li::marker {
+  color: #f9572a;
+}
+
 .instructions {
   font-size: 1.25rem;
   line-height: 1.5;
@@ -68,9 +141,6 @@
   border-radius: 8px;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   padding: 2rem;
-  max-width: 60rem;
-  margin: 2rem auto;
-  animation: fade-slide-in-from-bottom 1s ease-out forwards;
 }
 
 .loading {
@@ -123,5 +193,24 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .image {
+    width: 100%;
+    height: 15rem;
+  }
+
+  .headerText h1 {
+    font-size: 2rem;
+  }
+
+  .mealInfo {
+    gap: 1rem;
   }
 }
