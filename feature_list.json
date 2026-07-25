@@ -69,8 +69,8 @@
       "name": "Production data seeding",
       "description": "Apply D1 migrations/seed and upload demo images to the real (remote) D1 database and R2 bucket so the deployed site actually shows content",
       "dependencies": ["feat-001", "feat-002", "feat-003", "feat-004", "feat-005", "feat-006", "feat-007", "feat-008"],
-      "status": "blocked",
-      "evidence": "Production D1 appears populated (meal cards render on the live site). Production R2 bucket (foodie-course-images) was confirmed EMPTY (0 B, dashboard Objects tab shows \"Add files to get started\") — `node scripts/upload-seed-images.mjs --remote` needs to be (re-)run and its output verified. Separately, wrangler.jsonc's NEXT_PUBLIC_R2_PUBLIC_URL was pointing at the wrong custom domain (cdn.beemonswtf.web.id, which belongs to an unrelated portfolio bucket) instead of the correct one (foodie-cdn.beemonswtf.web.id) — fixed in wrangler.jsonc and .env.local, but requires a rebuild+redeploy (npm run deploy) to take effect since images.remotePatterns is baked in at build time."
+      "status": "done",
+      "evidence": "User confirmed images now render on the live site (https://foodie.beemonswtf.web.id) after running `node scripts/upload-seed-images.mjs --remote` and redeploying with the corrected NEXT_PUBLIC_R2_PUBLIC_URL (foodie-cdn.beemonswtf.web.id)."
     },
     {
       "id": "feat-010",
