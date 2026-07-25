@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /favorites
 
 Sitemap: https://foodie.beemonswtf.web.id/sitemap.xml
