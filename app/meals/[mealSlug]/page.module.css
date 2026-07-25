@@ -8,56 +8,50 @@
 
 .image {
   position: relative;
-  width: 30rem;
+  width: 28rem;
   height: 20rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .header img {
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
-  animation: fade-slide-in-from-left 1s ease-out forwards;
 }
 
 .headerText {
-  padding: 0.5rem 1rem 0 1rem;
-  color: #ddd6cb;
+  padding: 0.5rem 0 0;
   max-width: 40rem;
-  animation: fade-slide-in-from-right 1s ease-out forwards;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .headerText h1 {
   margin: 0;
-  font-size: 3.5rem;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
-  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  font-size: 2.5rem;
+  line-height: 1.15;
 }
 
 .creator {
-  font-size: 1.5rem;
-  color: #cfa69b;
-  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin: 0.5rem 0 0.75rem;
 }
 
 .creator a {
-  background: linear-gradient(90deg, #f9572a, #ff8a05);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.creator a:hover,
-.creator a:active {
-  background: linear-gradient(90deg, #f9572a, #ff8a05);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 18px rgba(248, 190, 42, 0.8);
+  font-weight: 600;
 }
 
 .summary {
-  font-size: 1.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 1rem 0 0;
 }
 
 .mealInfo {
@@ -66,139 +60,93 @@
   gap: 1.5rem;
   margin-top: 1.5rem;
   padding: 1rem 0;
-  border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .infoItem {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.9375rem;
 }
 
 .infoLabel {
-  font-weight: bold;
-  color: #cfa69b;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
 }
 
 .infoHighlight {
-  font-weight: bold;
-  color: #f9572a;
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .difficulty {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .main {
   max-width: 60rem;
-  margin: 2rem auto;
+  margin: 2rem auto 4rem;
   padding: 0 1rem;
 }
 
 .section {
   margin-bottom: 3rem;
-  animation: fade-slide-in-from-bottom 1s ease-out forwards;
 }
 
 .section h2 {
-  color: #ddd6cb;
-  font-size: 2rem;
-  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #f9572a;
   padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent);
+  display: inline-block;
 }
 
 .ingredientsList {
-  background-color: #1a1a1a;
-  border-radius: 8px;
-  padding: 2rem;
-  list-style-position: inside;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 2rem;
+  list-style: none;
 }
 
 .ingredientsList li {
-  font-size: 1.25rem;
-  padding: 0.5rem 0;
-  color: #ddd6cb;
-  border-bottom: 1px solid #333;
+  font-size: 1.0625rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .ingredientsList li:last-child {
   border-bottom: none;
 }
 
-.ingredientsList li::marker {
-  color: #f9572a;
-}
-
 .instructions {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  background-color: #6e6464;
-  color: #13120f;
-  border-radius: 8px;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
-  padding: 2rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 2rem;
+  list-style-position: outside;
 }
 
-.loading {
-  font-size: 3rem;
-  text-align: center;
-  color: #ddd6cb;
-  font-weight: bold;
-  animation: flash 1s ease-in-out infinite alternate;
+.instructions li {
+  padding: 0.75rem 0;
+  padding-left: 0.5rem;
 }
 
-@keyframes fade-slide-in-from-left {
-  0% {
-    opacity: 0;
-    transform: translateX(-1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fade-slide-in-from-right {
-  0% {
-    opacity: 0;
-    transform: translateX(1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fade-slide-in-from-bottom {
-  0% {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes flash {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.instructions li:not(:last-child) {
+  border-bottom: 1px solid var(--color-border);
 }
 
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
+    padding: 1.5rem 1rem;
   }
 
   .image {
@@ -207,10 +155,15 @@
   }
 
   .headerText h1 {
-    font-size: 2rem;
+    font-size: 1.875rem;
   }
 
   .mealInfo {
     gap: 1rem;
+  }
+
+  .ingredientsList,
+  .instructions {
+    padding: 0.5rem 1.25rem;
   }
 }

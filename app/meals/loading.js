@@ -1,14 +1,16 @@
 export default function Loading() {
   return (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      minHeight: '50vh',
-      color: '#ddd6cb',
-      fontSize: '1.5rem'
-    }}>
-      <p>Loading delicious meals...</p>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '50vh',
+        color: '#6b5d52',
+        fontSize: '1rem',
+      }}
+    >
+      <p>Loading meals...</p>
     </div>
   );
 }

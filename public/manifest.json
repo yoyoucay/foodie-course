@@ -4,20 +4,14 @@
   "description": "Share and discover amazing recipes from food lovers around the world",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#282c34",
-  "theme_color": "#f9572a",
+  "background_color": "#faf6f0",
+  "theme_color": "#b5482b",
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
+      "src": "/logo.png",
+      "sizes": "any",
       "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any"
     }
   ]
 }

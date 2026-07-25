@@ -1,97 +1,138 @@
 .header {
   display: flex;
-  gap: 3rem;
+  align-items: center;
+  gap: 4rem;
   margin: 3rem auto;
   width: 90%;
-  max-width: 75rem;
+  max-width: var(--content-width);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .header {
     flex-direction: column;
+    align-items: stretch;
     gap: 2rem;
     margin: 2rem auto;
   }
-  
+
   .slideshow {
     width: 100% !important;
-    height: 20rem !important;
-  }
-  
-  .hero h1 {
-    font-size: 1.5rem !important;
-  }
-  
-  .cta {
-    flex-direction: column !important;
+    height: 18rem !important;
   }
 }
 
 .slideshow {
-  width: 40rem;
-  height: 25rem;
+  width: 26rem;
+  height: 30rem;
+  flex-shrink: 0;
 }
 
-.hero {
-  color: #ddd6cb;
-  font-size: 1.5rem;
+.heroCol {
+  max-width: 32rem;
 }
 
-.hero h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 0.15rem;
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #f9572a, #ffc905);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent);
+  margin: 0 0 0.75rem;
+}
+
+.heroCol h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .heroCol h1 {
+    font-size: 2.25rem;
+  }
+}
+
+.lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 0 2rem;
 }
 
 .cta {
-  font-size: 1.5rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
-.cta a {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(90deg, #f9572a, #ff9b05);
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background 0.3s ease;
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9375rem;
 }
 
-.cta a:hover,
-.cta a:active {
-  background: linear-gradient(90deg, #fd4715, #f9b241);
+.primaryButton {
+  background: var(--color-accent);
+  color: #fff;
 }
 
-.cta a:first-child {
-  background: transparent;
-  font-weight: normal;
-  color: #ff9b05;
-  padding-left: 0;
+.primaryButton:hover {
+  background: var(--color-accent-hover);
+  color: #fff;
 }
 
-.cta a:first-child:hover,
-.cta a:first-child:active {
-  background: transparent;
-  color: #f9b241;
+.secondaryButton {
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.secondaryButton:hover {
+  border-color: var(--color-text);
+  color: var(--color-text);
 }
 
 .section {
-  display: flex;
-  flex-direction: column;
-  color: #ddd6cb;
-  font-size: 1.5rem;
-  max-width: 50rem;
+  max-width: 46rem;
   width: 90%;
-  margin: 2rem auto;
-  text-align: center;
+  margin: 5rem auto;
+}
+
+.section h2 {
+  font-size: 1.75rem;
+  margin: 0 0 2rem;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.steps li {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+}
+
+.stepNumber {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.steps h3 {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 0.5rem;
+}
+
+.steps p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
 }
