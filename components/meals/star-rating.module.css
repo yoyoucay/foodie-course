@@ -1,0 +1,40 @@
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icons {
+  display: inline-flex;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+}
+
+.filled {
+  color: var(--color-gold);
+}
+
+.empty {
+  color: var(--color-border-strong);
+}
+
+.count {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.sm .icons {
+  font-size: 0.8125rem;
+}
+
+.sm .count {
+  font-size: 0.75rem;
+}
+
+.lg .icons {
+  font-size: 1.375rem;
+}
+
+.lg .count {
+  font-size: 0.9375rem;
+}

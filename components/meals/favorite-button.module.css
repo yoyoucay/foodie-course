@@ -1,0 +1,27 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.button:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.button:active {
+  transform: scale(0.92);
+}
+
+.active {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}

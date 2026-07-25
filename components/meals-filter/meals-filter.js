@@ -1,81 +1,93 @@
-﻿"use client";
+'use client';
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useTransition } from "react";
-import classes from "./meals-filter.module.css";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useRef, useState, useTransition } from 'react';
+import classes from './meals-filter.module.css';
+
+const SEARCH_DEBOUNCE_MS = 400;
 
 export default function MealsFilter({ categories }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
-  
-  const [search, setSearch] = useState(searchParams.get("search") || "");
-  const [category, setCategory] = useState(searchParams.get("category") || "");
-  const [difficulty, setDifficulty] = useState(searchParams.get("difficulty") || "");
 
-  const updateFilters = () => {
+  const [search, setSearch] = useState(searchParams.get('search') || '');
+  const [category, setCategory] = useState(searchParams.get('category') || '');
+  const [difficulty, setDifficulty] = useState(searchParams.get('difficulty') || '');
+  const isFirstRender = useRef(true);
+
+  function pushFilters({ search, category, difficulty }) {
     const params = new URLSearchParams(searchParams);
-    
-    if (search) {
-      params.set("search", search);
-    } else {
-      params.delete("search");
-    }
-    
-    if (category) {
-      params.set("category", category);
-    } else {
-      params.delete("category");
-    }
-    
-    if (difficulty) {
-      params.set("difficulty", difficulty);
-    } else {
-      params.delete("difficulty");
-    }
-    
+    if (search) params.set('search', search); else params.delete('search');
+    if (category) params.set('category', category); else params.delete('category');
+    if (difficulty) params.set('difficulty', difficulty); else params.delete('difficulty');
+    params.delete('page'); // any filter change starts back at page 1
+
     startTransition(() => {
       router.push(`/meals?${params.toString()}`);
     });
-  };
+  }
 
-  const clearFilters = () => {
-    setSearch("");
-    setCategory("");
-    setDifficulty("");
+  // Debounce free-text search so we don't push a route change per keystroke.
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const timeout = setTimeout(() => {
+      pushFilters({ search, category, difficulty });
+    }, SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search]);
+
+  function handleCategoryChange(value) {
+    setCategory(value);
+    pushFilters({ search, category: value, difficulty });
+  }
+
+  function handleDifficultyChange(value) {
+    setDifficulty(value);
+    pushFilters({ search, category, difficulty: value });
+  }
+
+  function clearFilters() {
+    setSearch('');
+    setCategory('');
+    setDifficulty('');
     startTransition(() => {
-      router.push("/meals");
+      router.push('/meals');
     });
-  };
+  }
+
+  const hasActiveFilters = search || category || difficulty;
 
   return (
     <div className={classes.filterContainer}>
       <div className={classes.searchBox}>
         <input
-          type="text"
+          type="search"
           placeholder="Search meals, ingredients..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && updateFilters()}
           className={classes.searchInput}
+          aria-label="Search meals or ingredients"
         />
-        <button onClick={updateFilters} className={classes.searchButton} disabled={isPending}>
-          {isPending ? "Searching..." : "Search"}
-        </button>
+        <span className={classes.status} aria-live="polite">
+          {isPending ? 'Searching…' : ''}
+        </span>
       </div>
 
       <div className={classes.filters}>
         <div className={classes.filterGroup}>
-          <label htmlFor="category">Category:</label>
+          <label htmlFor="category">Category</label>
           <select
             id="category"
             value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-            }}
+            onChange={(e) => handleCategoryChange(e.target.value)}
             className={classes.select}
           >
-            <option value="">All Categories</option>
+            <option value="">All categories</option>
             {categories.map((cat) => (
               <option key={cat.slug} value={cat.slug}>
                 {cat.icon} {cat.name}
@@ -85,29 +97,23 @@ export default function MealsFilter({ categories }) {
         </div>
 
         <div className={classes.filterGroup}>
-          <label htmlFor="difficulty">Difficulty:</label>
+          <label htmlFor="difficulty">Difficulty</label>
           <select
             id="difficulty"
             value={difficulty}
-            onChange={(e) => {
-              setDifficulty(e.target.value);
-            }}
+            onChange={(e) => handleDifficultyChange(e.target.value)}
             className={classes.select}
           >
-            <option value="">All Levels</option>
+            <option value="">All levels</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
         </div>
 
-        <button onClick={updateFilters} className={classes.applyButton} disabled={isPending}>
-          Apply Filters
-        </button>
-        
-        {(search || category || difficulty) && (
+        {hasActiveFilters && (
           <button onClick={clearFilters} className={classes.clearButton} disabled={isPending}>
-            Clear All
+            Clear filters
           </button>
         )}
       </div>

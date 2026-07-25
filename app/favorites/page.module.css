@@ -1,0 +1,50 @@
+.header {
+  width: 90%;
+  max-width: 75rem;
+  margin: 3rem auto 2rem;
+}
+
+.header h1 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.highlight {
+  color: var(--color-accent);
+}
+
+.header p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+}
+
+.main {
+  width: 90%;
+  max-width: 75rem;
+  margin: 0 auto 4rem;
+}
+
+.state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--color-text-muted);
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--color-text-muted);
+}
+
+.empty p {
+  margin: 0 0 1rem;
+  font-size: 1.0625rem;
+}
+
+.empty a {
+  font-weight: 600;
+}

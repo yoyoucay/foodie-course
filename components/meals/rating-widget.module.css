@@ -1,0 +1,56 @@
+.widget {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.prompt {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin: 0 0 0.5rem;
+}
+
+.starRow {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.starRow button {
+  background: none;
+  border: none;
+  padding: 0.125rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.starRow button:hover:not(:disabled),
+.starRow button:focus-visible {
+  transform: scale(1.15);
+}
+
+.starRow button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.filled {
+  color: var(--color-gold);
+}
+
+.empty {
+  color: var(--color-border-strong);
+}
+
+.thanks {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
