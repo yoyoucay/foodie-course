@@ -77,8 +77,8 @@
       "name": "Atomic commits for this session's work",
       "description": "Commit the full migration/redesign/feature/SEO session as a small number of logically-grouped, working commits",
       "dependencies": ["feat-001", "feat-002", "feat-003", "feat-004", "feat-005", "feat-006", "feat-007", "feat-008"],
-      "status": "not-started",
-      "evidence": ""
+      "status": "done",
+      "evidence": "6 commits made on master: 126ef3b (infra migration), 8fc3a13 (ratings/pagination/favorites/search), 0888e7a (SEO), c5f16a0 (UI redesign), bb0b470 (README), 23ec494 (agent harness). 12 CRLF-only noise files (no real diff under --ignore-all-space) were reverted via git checkout rather than committed: .vscode/settings.json, app/meals/error.js, app/meals/not-found.js, app/meals/share/error.js, app/not-found.js, components/images/image-slideshow.js, components/main-header/nav-link.js, components/meals/image-picker.js, components/meals/meals-form-submit.js, components/meals/meals-grid.js, eslint.config.mjs, jsconfig.json. Working tree is clean (git status --short empty)."
     }
   ]
 }
