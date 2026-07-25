@@ -1,0 +1,84 @@
+{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Cloudflare infrastructure migration",
+      "description": "Migrate hosting from Vercel to Cloudflare Workers via @opennextjs/cloudflare; add wrangler.jsonc, open-next.config.ts; upgrade Next.js 14→16 and React 18→19 (required by @opennextjs/cloudflare's peer range)",
+      "dependencies": [],
+      "status": "done",
+      "evidence": "wrangler.jsonc/open-next.config.ts present; npm run build passes locally after fixing async params/searchParams/cookies() and useFormState→useActionState for Next 16; deployed successfully to Cloudflare Workers (https://foodie.beemonswtf.web.id returns 200) after also fixing a Worker-bundle-size overage caused by next/og in app/icon.js (replaced with a static app/icon.svg)"
+    },
+    {
+      "id": "feat-002",
+      "name": "D1 + R2 data layer rewrite",
+      "description": "Replace @vercel/postgres and @aws-sdk/client-s3 with Cloudflare D1 (SQLite dialect queries) and R2 (image storage); add custom error classes",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "lib/db.js, lib/storage.js, lib/errors.js added; lib/meals.js and lib/actions.js rewritten for D1's ? placeholders and R2's bucket.put(); no @vercel/postgres or @aws-sdk/client-s3 references remain in the codebase (verified via grep)"
+    },
+    {
+      "id": "feat-003",
+      "name": "Ratings feature",
+      "description": "Star ratings on meal cards and detail page; one vote per browser per meal via cookie",
+      "dependencies": ["feat-002"],
+      "status": "done",
+      "evidence": "components/meals/star-rating.js (display) + rating-widget.js (interactive, useTransition + react-hot-toast); lib/actions.js rateMeal() checks/sets a `rated_<slug>` cookie; lib/meals.js rateMeal() does the atomic rating_sum/rating_count UPDATE"
+    },
+    {
+      "id": "feat-004",
+      "name": "Pagination",
+      "description": "Replace the fixed 50-item /meals limit with real page-based pagination",
+      "dependencies": ["feat-002"],
+      "status": "done",
+      "evidence": "components/pagination/pagination.js; app/meals/page.js uses PAGE_SIZE=12 with limit/offset and a Pagination component that preserves active filters"
+    },
+    {
+      "id": "feat-005",
+      "name": "Favorites (client-side bookmarks)",
+      "description": "localStorage-based favorites with no account system; /favorites page and /api/meals?slugs= endpoint to resolve them",
+      "dependencies": ["feat-002"],
+      "status": "done",
+      "evidence": "lib/hooks/use-favorites.js, components/meals/favorite-button.js + favorites-view.js, app/favorites/page.js (noindex via metadata.robots), app/api/meals/route.js"
+    },
+    {
+      "id": "feat-006",
+      "name": "Search UX improvements",
+      "description": "Debounce free-text search, auto-apply category/difficulty filters, reset pagination on filter change",
+      "dependencies": ["feat-002"],
+      "status": "done",
+      "evidence": "components/meals-filter/meals-filter.js: 400ms debounce on search input, immediate apply on select change, deletes the `page` param on any filter change"
+    },
+    {
+      "id": "feat-007",
+      "name": "UI redesign: warm editorial design system",
+      "description": "Replace the dark gradient/wavy-SVG template look with a cream/charcoal/terracotta palette, self-hosted Fraunces + Inter fonts, and a redesigned header, home, meals grid/detail, share form, and community page",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "app/globals.css design tokens; next/font/google in app/layout.js; every component .module.css rewritten; components/main-header/main-header-background.* (decorative SVG) deleted; app/icon.png (busy illustration) replaced with app/icon.svg"
+    },
+    {
+      "id": "feat-008",
+      "name": "SEO",
+      "description": "Dynamic sitemap covering every recipe, canonical URLs, Recipe + BreadcrumbList JSON-LD, robots.txt rules, noindex on filtered/personalized views",
+      "dependencies": ["feat-003", "feat-005"],
+      "status": "done",
+      "evidence": "app/sitemap.js (force-dynamic, queries lib/meals.getAllMealSlugs); alternates.canonical on every page's metadata; breadcrumbLd + jsonLd scripts in app/meals/[mealSlug]/page.js; public/robots.txt disallows /api/ and /favorites; app/meals/page.js sets robots noindex when filters are active; app/favorites/page.js sets robots noindex always"
+    },
+    {
+      "id": "feat-009",
+      "name": "Production data seeding",
+      "description": "Apply D1 migrations/seed and upload demo images to the real (remote) D1 database and R2 bucket so the deployed site actually shows content",
+      "dependencies": ["feat-001", "feat-002", "feat-003", "feat-004", "feat-005", "feat-006", "feat-007", "feat-008"],
+      "status": "blocked",
+      "evidence": "Production D1 appears populated (meal cards render on the live site). Production R2 bucket (foodie-course-images) was confirmed EMPTY (0 B, dashboard Objects tab shows \"Add files to get started\") — `node scripts/upload-seed-images.mjs --remote` needs to be (re-)run and its output verified. Separately, wrangler.jsonc's NEXT_PUBLIC_R2_PUBLIC_URL was pointing at the wrong custom domain (cdn.beemonswtf.web.id, which belongs to an unrelated portfolio bucket) instead of the correct one (foodie-cdn.beemonswtf.web.id) — fixed in wrangler.jsonc and .env.local, but requires a rebuild+redeploy (npm run deploy) to take effect since images.remotePatterns is baked in at build time."
+    },
+    {
+      "id": "feat-010",
+      "name": "Atomic commits for this session's work",
+      "description": "Commit the full migration/redesign/feature/SEO session as a small number of logically-grouped, working commits",
+      "dependencies": ["feat-001", "feat-002", "feat-003", "feat-004", "feat-005", "feat-006", "feat-007", "feat-008"],
+      "status": "not-started",
+      "evidence": ""
+    }
+  ]
+}
